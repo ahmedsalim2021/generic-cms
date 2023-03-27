@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('forign_key_attributes', function (Blueprint $table) {
+        Schema::create('foreign_key_attributes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('entity_id')->constrained();
+            $table->string('name');
+            $table->unsignedBigInteger('value');
+            $table->foreign('value')->on('entities')
+                ->references('id')->onDelete('cascade');
             $table->timestamps();
         });
     }

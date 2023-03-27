@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('string_attributes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('entity_id')->constrained();
-            $table->string('name');
-            $table->string('value');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('role_id');
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('string_attributes');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('role_id');
+        });
     }
 };

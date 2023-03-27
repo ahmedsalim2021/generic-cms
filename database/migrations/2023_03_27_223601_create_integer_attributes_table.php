@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('integer_attributes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('entity_id')->constrained();
+            $table->string('name');
+            $table->integer('value');
             $table->timestamps();
         });
     }

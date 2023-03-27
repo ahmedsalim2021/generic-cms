@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('date_attributes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('entity_id')->constrained();
+            $table->string('name');
+            $table->date('value');
             $table->timestamps();
         });
     }
