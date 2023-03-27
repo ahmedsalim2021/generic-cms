@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('foreign_key_attributes', function (Blueprint $table) {
+        Schema::create('entities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('entity_id')->constrained();
-            $table->string('name');
-            $table->unsignedBigInteger('value');
-            $table->foreign('value')->on('entities')
-                ->references('id')->onDelete('cascade');
+            $table->foreignId('entity_type_id')->constrained();
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forign_key_attributes');
+        Schema::dropIfExists('entities');
     }
 };

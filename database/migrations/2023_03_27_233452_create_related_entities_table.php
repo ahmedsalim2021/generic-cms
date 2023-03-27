@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('string_attributes', function (Blueprint $table) {
+        Schema::create('related_entities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('entity_id')->constrained();
-            $table->string('name');
-            $table->string('value');
+            $table->unsignedBigInteger('related_entity_id')->index();
+            $table->foreign('related_entity_id')->on('entities')
+            ->references('id')->onDelete('cascade');
+            $table->string('entity_type_name');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('string_attributes');
+        Schema::dropIfExists('related_entities');
     }
 };

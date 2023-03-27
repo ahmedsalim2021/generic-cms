@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('integer_attributes', function (Blueprint $table) {
+        Schema::create('attributes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('entity_id')->constrained();
             $table->string('name');
-            $table->integer('value');
+            $table->string('datatype');
+            $table->foreignId('entity_type_id')->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('integer_attributes');
+        Schema::dropIfExists('attributes');
     }
 };

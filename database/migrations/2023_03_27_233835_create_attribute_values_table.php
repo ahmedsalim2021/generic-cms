@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('date_attributes', function (Blueprint $table) {
+        Schema::create('attribute_values', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('attribute_id')->constrained();
             $table->foreignId('entity_id')->constrained();
-            $table->string('name');
-            $table->date('value');
+            $table->text('value');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('date_attributes');
+        Schema::dropIfExists('attribute_values');
     }
 };
