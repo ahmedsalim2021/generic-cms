@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('related_entity_id')->index();
             $table->foreign('related_entity_id')->on('entities')
             ->references('id')->onDelete('cascade');
+            $table->foreignId('attribute_id')->constrained();
             $table->string('entity_type_name');
             $table->timestamps();
         });
