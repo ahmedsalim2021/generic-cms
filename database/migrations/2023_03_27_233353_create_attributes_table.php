@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('datatype');
+            $table->foreignId('entity_type_id')->nullable()->constrained();
             $table->timestamps();
         });
     }
